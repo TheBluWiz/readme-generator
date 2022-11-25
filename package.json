@@ -1,14 +1,14 @@
 {
-  "name": "static-site",
-  "version": "1.0.0",
-  "description": "",
+  "name": "readme-generator",
+  "version": "0.1.0",
+  "description": "Generate a README.md file based on user input via terminal",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jamey Wicklund",
+  "license": "MIT",
   "dependencies": {
-    "inquirer": "8.2.4"
+    "inquirer": "^8.2.4"
   }
 }
