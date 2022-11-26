@@ -23,12 +23,40 @@ function generateREADME(answers) {
   return data;
 }
 
+function createTableofContents(answers) {
+  for (property in answers) {
+    switch (answers.property) {
+      case answers.title:
+        if (answers.title !== "") tableOfContents.push(answers.title)
+        break;
+      case answers.description:
+        if (answers.description !== "") tableOfContents.push(answers.description)
+        break;
+      case answers.installation:
+        if (answers.installation !== "") tableOfContents.push(answers.installation)
+        break;
+      case answers.usage:
+        if (answers.usage !== "") tableOfContents.push(answers.usage)
+        break;
+      case answers.license:
+        if (answers.license !== "") tableOfContents.push(answers.license)
+        break;
+      case answers.contributing:
+        if (answers.contributing !== "") tableOfContents.push(answers.contributing)
+        break;
+      case answers.tests:
+        if (answers.tests !== "") tableOfContents.push(answers.tests)
+        break;
+    }
+  }
+}
+
 inquirer
   .prompt([
     {
       type: 'input',
       message: "This application will help generate a Proffesional README.md based on your choices. If a section isn't needed for your project type/select none.",
-      name: 'title',
+      name: 'splash',
     },
     {
       type: 'input',
@@ -76,10 +104,9 @@ inquirer
     },
   ])
   .then((answers) => {
-    let tableOfContents = answers.filter(answer => answer !== "");
-    tableOfContents.toString()
-    tableOfContents.replace(',/g'`\n`)
-
+    console.log(answers)
+    tableOfContents = []
+    createTableofContents(answers)
     console.log(generateREADME(answers));
 
     // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
