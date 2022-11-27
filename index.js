@@ -6,49 +6,36 @@ function generateREADME(answers) {
   ## Description
   ${answers.description}
   ## Table of Contents
-  ${tableOfContents}
+  [Installation](##Installation)
+  [Usage](##Usage)
+  [Contributing](##Contributing)
+  [Tests]( ##Tests)
+  [Questions](##Questions)
+  [License](##License)
   ## Installation
   ${answers.installation}
   ## Usage
   ${answers.usage}
-  ## License
-  ${answers.license}
   ## Contributing
   ${answers.contributing}
   ## Tests
   ${answers.tests}
   ## Questions
-  ${answers.questions}`
+  ${answers.questions}
+  ## License
+  ${answers.license}`
 
   return data;
 }
 
-function createTableofContents(answers) {
-  for (property in answers) {
-    switch (answers.property) {
-      case answers.title:
-        if (answers.title !== "") tableOfContents.push(answers.title)
-        break;
-      case answers.description:
-        if (answers.description !== "") tableOfContents.push(answers.description)
-        break;
-      case answers.installation:
-        if (answers.installation !== "") tableOfContents.push(answers.installation)
-        break;
-      case answers.usage:
-        if (answers.usage !== "") tableOfContents.push(answers.usage)
-        break;
-      case answers.license:
-        if (answers.license !== "") tableOfContents.push(answers.license)
-        break;
-      case answers.contributing:
-        if (answers.contributing !== "") tableOfContents.push(answers.contributing)
-        break;
-      case answers.tests:
-        if (answers.tests !== "") tableOfContents.push(answers.tests)
-        break;
-    }
-  }
+function cleanUp(answers) {
+  if (answers.title === "") answers.title = "Title TBD"
+  if (answers.description === "") answers.description = "TBD"
+  if (answers.installation === "") answers.installation = "TBD"
+  if (answers.usage === "") answers.usage = "TBD"
+  if (answers.contributing === "") answers.contributing = "This project is not yet open to collaboration"
+  if (answers.tests === "") answers.tests = "No Tests have been established for this application"
+  answers.license = `This project is under the ${answers.license} attached in the repository.`
 }
 
 inquirer
@@ -79,6 +66,16 @@ inquirer
       name: 'usage',
     },
     {
+      type: 'input',
+      message: 'Do you have instructions or reccomendations for those who would like to contribute?',
+      name: 'contributing',
+    },
+    {
+      type: 'input',
+      message: 'Have you included any tests?',
+      name: 'tests',
+    },
+    {
       type: 'list',
       message: 'Would you like to include a license?',
       choices: [
@@ -92,36 +89,12 @@ inquirer
         'Eclipse Public license'],
       name: 'license',
     },
-    {
-      type: 'input',
-      message: 'Are there any contributers to your code? Do you have instructions or rules for those who would like to contribute?',
-      name: 'contributing',
-    },
-    {
-      type: 'input',
-      message: 'Have you included any tests?',
-      name: 'tests',
-    },
   ])
   .then((answers) => {
     console.log(answers)
-    tableOfContents = []
-    createTableofContents(answers)
-    console.log(generateREADME(answers));
+    cleanUp(answers)
 
-    // fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-    //   err ? console.log(err) : console.log('Success!')
-    // );
+    fs.writeFile('README.md', generateREADME(answers), (err) =>
+      err ? console.log(err) : console.log('Success!')
+    );
   });
-
-
-
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
-
-// TODO: Create a function to initialize app
-function init() { }
-
-// Function call to initialize app
-init();
