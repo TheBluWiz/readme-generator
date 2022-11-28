@@ -2,12 +2,12 @@
   ## Description
   This project will dynamically create a README for your application.
   ## Table of Contents
-  - [Installation](##Installation)
-  - [Usage](##Usage)
-  - [Contributing](##Contributing)
-  - [Tests](##Tests)
-  - [Questions](##Questions)
-  - [License](##License)
+  - [Installation](#Installation)
+  - [Usage](#Usage)
+  - [Contributing](#Contributing)
+  - [Tests](#Tests)
+  - [Questions](#Questions)
+  - [License](#License)
   ## Installation
   After node and npm are installed, run 'npm i' in the command line from the root folder of this project. That will install the dependancies. They you can run it with 'node index.js'.
   ## Usage
