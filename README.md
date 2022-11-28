@@ -1,6 +1,6 @@
 # Professional README generator [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Description
-This project will dynamically create a README for your application. It is designed to be used in the node runtime evniornment and is purely javascript.
+This project will dynamically create a README for your application. It is designed to be used in the node runtime enviornment and is purely javascript.
 ## Table of Contents
   - [Installation](#Installation)
   - [Usage](#Usage)
