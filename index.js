@@ -40,7 +40,7 @@ function cleanUp(answers) {
   if (answers.contributing === "none" || answers.contributing === "") answers.contributing = "This project is not yet open to collaboration"
   if (answers.tests === "none" || answers.tests === "") answers.tests = "No Tests have been established for this application"
 
-  if (answers.license == 'none') {
+  if (answers.license !== 'none') {
     answers.license = `This project is under the ${answers.license} attached in the repository.`
   } else {
     answers.license = 'This project is not allowed to be used or edited by anyone under any circumstances.'
