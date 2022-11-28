@@ -40,7 +40,7 @@ function cleanUp(answers) {
   if (answers.contributing === "none" || answers.contributing === "") answers.contributing = "This project is not yet open to collaboration"
   if (answers.tests === "none" || answers.tests === "") answers.tests = "No Tests have been established for this application"
 
-  if (answers.license !== 'none') {
+  if (answers.license == 'none') {
     answers.license = `This project is under the ${answers.license} attached in the repository.`
   } else {
     answers.license = 'This project is not allowed to be used or edited by anyone under any circumstances.'
@@ -56,7 +56,7 @@ function generateREADME(answers) {
   - [Installation](##Installation)
   - [Usage](##Usage)
   - [Contributing](##Contributing)
-  - [Tests]( ##Tests)
+  - [Tests](##Tests)
   - [Questions](##Questions)
   - [License](##License)
   ## Installation
@@ -68,7 +68,7 @@ function generateREADME(answers) {
   ## Tests
   ${answers.tests}
   ## Questions
-  ${answers.questions}
+  If you would like to contact me or view other projects I'm working on, you can explore my repositories at [${answers.gitUser}](https://github.com/${answers.gitUser}), or email me at ${answers.email}.
   ## License
   ${answers.license}`
 
@@ -114,8 +114,13 @@ inquirer
     },
     {
       type: 'input',
-      message: 'How should would you prefer to be reached for questions about this project?',
-      name: 'questions',
+      message: 'What is your GitHub username?',
+      name: 'gitUser',
+    },
+    {
+      type: 'input',
+      message: 'What email address would you like to be contacted at?',
+      name: 'email',
     },
     {
       type: 'list',
@@ -137,7 +142,7 @@ inquirer
     chooseBadge(answers)
     cleanUp(answers)
 
-    fs.writeFile('README.md', generateREADME(answers), (err) =>
+    fs.writeFile('./Generated/README.md', generateREADME(answers), (err) =>
       err ? console.log(err) : console.log('Professional README generated!')
     );
   });
